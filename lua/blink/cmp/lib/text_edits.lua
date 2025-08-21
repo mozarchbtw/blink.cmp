@@ -371,6 +371,7 @@ function text_edits.write_to_dot_repeat(text_edit)
         row = 0,
         col = 0,
         noautocmd = true,
+        zindex = 69
       })
       vim.api.nvim_buf_set_text(0, 0, 0, 0, 0, { '_' .. string.rep('a', chars_to_delete) })
       vim.api.nvim_win_set_cursor(0, { 1, chars_to_delete + 1 })
