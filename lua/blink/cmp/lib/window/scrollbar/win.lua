@@ -83,6 +83,7 @@ function scrollbar_win:_make_win(geometry, hl_group)
     focusable = false,
     noautocmd = true,
     border = 'none',
+    zindex = 69
   })
   local win = vim.api.nvim_open_win(self.buf, false, win_config)
   vim.api.nvim_set_option_value('winhighlight', 'Normal:' .. hl_group .. ',EndOfBuffer:' .. hl_group, { win = win })
