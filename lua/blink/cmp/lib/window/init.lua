@@ -114,6 +114,8 @@ function win:open()
   -- window already exists
   if self.id ~= nil and vim.api.nvim_win_is_valid(self.id) then return end
 
+  vim.api.nvim_set_option_value('filetype', self.config.filetype, { buf = self.buf })
+
   -- create window
   self.id = vim.api.nvim_open_win(self:get_buf(), false, {
     relative = 'cursor',
@@ -122,7 +124,7 @@ function win:open()
     height = self.config.max_height,
     row = 1,
     col = 1,
-    zindex = 1001,
+    zindex = 69,
     border = self.config.border == 'padded' and { ' ', '', '', ' ', '', '', ' ', ' ' } or self.config.border,
   })
   vim.api.nvim_set_option_value('winblend', self.config.winblend, { win = self.id })
@@ -135,7 +137,6 @@ function win:open()
   vim.api.nvim_set_option_value('cursorlineopt', 'line', { win = self.id })
   vim.api.nvim_set_option_value('cursorline', false, { win = self.id })
   vim.api.nvim_set_option_value('scrolloff', self.config.scrolloff, { win = self.id })
-  vim.api.nvim_set_option_value('filetype', self.config.filetype, { buf = self.buf })
 
   self.cursor_line:update(self.id)
   if self.scrollbar then self.scrollbar:update(self.id) end
